@@ -47,12 +47,12 @@
     <div class="file-time">
       <span class="committed-at">
         
-          Updated <time class='js-timeago' datetime='2021-06-15 16:33:53 -0500'>2021-06-15 16:33:53 -0500</time>
+          Never committed
         
       </span>
     </div>
     <div>
-      <h3><small>. /</small> cell.rb</h3>
+      <h3><small>. /</small> display_spec.rb</h3>
     </div>
   </div>
   <!--End Page Title -->
@@ -68,15 +68,15 @@
           </div>
           <div class="code-statistics col-md-11">
             <div class="col-md-3">
-              <div><span class="metric">27</span><small> lines of codes</small></div>
-              <div><span class="metric">3</span><small> methods</small></div>
+              <div><span class="metric">19</span><small> lines of codes</small></div>
+              <div><span class="metric">0</span><small> methods</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">4.2</span><small> complexity/method</small></div>
-              <div><span class="metric">1</span><small> churn</small></div>
+              <div><span class="metric">N/A</span><small> complexity/method</small></div>
+              <div><span class="metric">0</span><small> churn</small></div>
             </div>
             <div class="col-md-3">
-              <div><span class="metric">12.58</span><small> complexity</small></div>
+              <div><span class="metric">14.93</span><small> complexity</small></div>
               <div><span class="metric">0</span><small> duplications</small></div>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
             <li class="active">
               <a href="#" id="toggle-smells" class="toggle-button button">
-                1
+                0
                 smell
               </a>
             </li>
@@ -99,29 +99,21 @@
 
     <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
 
-# clase que verifica si la celula vive o muere
-class Cell
-  def initialize(status, neighbours)
-    @status = status
-    @neighbours = neighbours
-  end
+require &#39;./display&#39;
 
-  def change_state
-    neighbours_lives = @neighbours
+RSpec.describe Display do
+  mtriz = [[&#39; * &#39;, &#39; . &#39;, &#39; . &#39;, &#39; . &#39;],
+           [&#39; * &#39;, &#39; . &#39;, &#39; . &#39;, &#39; . &#39;],
+           [&#39; * &#39;, &#39; . &#39;, &#39; . &#39;, &#39; . &#39;],
+           [&#39; * &#39;, &#39; . &#39;, &#39; . &#39;, &#39; . &#39;]]
 
-    # Condiciones
-    # celula viva con mas de 3 vecinos vivos muere
-    @status = &#39; . &#39; if neighbours_lives &gt; 3 &amp;&amp; @status == &#39; * &#39;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Cell#change_state calls '@status == ' * '' 2 times</span>              <span>Locations:</span>                  <a href="cell.html#L15" class="js-smell-location">0</a>                  <a href="cell.html#L18" class="js-smell-location">1</a>                  </div>  </li></ol>
+  let(:display) { Display.new(mtriz, 4, 4, 1) }
+  let(:displai) { display.prints }
 
-    # celula viva con menor de dos vecinos vivos muere
-    @status = &#39; . &#39; if neighbours_lives &lt; 2 &amp;&amp; @status == &#39; * &#39;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Cell#change_state calls '@status == ' * '' 2 times</span>              <span>Locations:</span>                  <a href="cell.html#L15" class="js-smell-location">0</a>                  <a href="cell.html#L18" class="js-smell-location">1</a>                  </div>  </li></ol>
-
-    # celula muerta con 3 vecinos vivos  revive
-    @status = &#39; * &#39; if neighbours_lives == 3 &amp;&amp; @status == &#39; . &#39;
-  end
-
-  def new_status
-    @status
+  context &#39;validar creacion de matriz&#39; do
+    it &#39;creacion&#39; do
+      expect(displai) != &#39;&#39;
+    end
   end
 end
 </code>

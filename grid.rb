@@ -20,7 +20,6 @@ class Grid
         @matriz[i].push([' . ', ' * '].sample)
       end
     end
-
     kill_cells_in_borders
   end
 
@@ -31,4 +30,5 @@ class Grid
       end
     end
   end
+
 end
